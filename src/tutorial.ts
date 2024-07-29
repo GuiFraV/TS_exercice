@@ -42,7 +42,13 @@ let isAdult: boolean = age >= 18;
 isAdult = !isAdult;
 console.log(isAdult);
 
-greetings = 10;
-age = "thirty";
-isAdult = "yes";
+// greetings = 10;
+// age = "thirty";
+// isAdult = "yes";
+
 console.log(greetings, age, isAdult);
+
+let requestStatus: "pending" | "success" | "error" = "pending";
+requestStatus = "success";
+requestStatus = "error";
+// requestStatus = "random";
