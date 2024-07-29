@@ -81,3 +81,193 @@ orderStatus = "delivered";
 
 let discount: number | string = 20;
 discount = "20%";
+
+let prices: number[] = [100.75, 42];
+// prices.push("hello");
+
+let fruits: string[] = ["apple", "orange"];
+
+// let randomValues: [] = ["hello"];
+let emptyValues: number[] = [];
+
+let names = ["peter", "susan", 1];
+
+let array: (string | boolean)[] = ["apple", true, "orange", false];
+
+// // Définir le type Developer
+// type Developer = {
+//   name: string;
+//   favoriteLanguage: string;
+//   yearsExperience: number;
+// };
+
+// // Définir le type Designer
+// type Designer = {
+//   name: string;
+//   favoriteTool: string;
+//   portfolioUrl: string;
+// };
+
+// // Définir le type union Employee
+// type Employee = Developer | Designer;
+
+// // Fonction pour filtrer les employés
+// function filterEmployees(
+//   employees: Employee[],
+//   type: "developer" | "designer"
+// ): Employee[] {
+//   if (type === "developer") {
+//     return employees.filter((employee) => "favoriteLanguage" in employee);
+//   } else if (type === "designer") {
+//     return employees.filter((employee) => "favoriteTool" in employee);
+//   } else {
+//     return [];
+//   }
+// }
+
+// // Exemple de données
+// const employees: Employee[] = [
+//   { name: "Alice", favoriteLanguage: "TypeScript", yearsExperience: 5 },
+//   {
+//     name: "Bob",
+//     favoriteTool: "Photoshop",
+//     portfolioUrl: "http://bobdesign.com",
+//   },
+//   { name: "Charlie", favoriteLanguage: "Python", yearsExperience: 3 },
+//   {
+//     name: "Dana",
+//     favoriteTool: "Sketch",
+//     portfolioUrl: "http://danadesign.com",
+//   },
+// ];
+
+// // Filtrer les développeurs
+// const developers = filterEmployees(employees, "developer");
+// console.log("Developers:", developers);
+
+// // Filtrer les designers
+// const designers = filterEmployees(employees, "designer");
+// console.log("Designers:", designers);
+
+// Définir le type Car
+type Car = {
+  brand: string;
+  model: string;
+  doors: number;
+};
+
+// Définir le type Truck
+type Truck = {
+  brand: string;
+  model: string;
+  capacity: number;
+};
+
+// Définir le type union Vehicle
+type Vehicle = Car | Truck;
+
+// Fonction pour filtrer les véhicules
+function filterVehicles(vehicles: Vehicle[], type: "car" | "truck"): Vehicle[] {
+  if (type === "car") {
+    return vehicles.filter((vehicle): vehicle is Car => "doors" in vehicle);
+  } else if (type === "truck") {
+    return vehicles.filter(
+      (vehicle): vehicle is Truck => "capacity" in vehicle
+    );
+  } else {
+    return [];
+  }
+}
+
+// Exemple de données
+const vehicles: Vehicle[] = [
+  { brand: "Toyota", model: "Corolla", doors: 4 },
+  { brand: "Ford", model: "F-150", capacity: 3 },
+  { brand: "Honda", model: "Civic", doors: 4 },
+  { brand: "Volvo", model: "FH16", capacity: 25 },
+];
+
+// Filtrer les voitures
+const cars = filterVehicles(vehicles, "car");
+console.log(cars);
+
+// Filtrer les camions
+const trucks = filterVehicles(vehicles, "truck");
+console.log(trucks);
+
+type Engineer = {
+  name: string;
+  expertise: string;
+  yearsExperience: number;
+};
+
+type Manager = {
+  name: string;
+  department: string;
+  employeesSupervised: number;
+};
+
+type Employee = Manager | Engineer;
+
+function filterEmployees(
+  employee: Employee[],
+  type: "engineer" | "manager"
+): Employee[] {
+  if (type === "engineer") {
+    return employee.filter((employee) => "expertise" in employee);
+  } else if (type === "manager") {
+    return employee.filter((employee) => "department" in employee);
+  } else {
+    return [];
+  }
+}
+
+const employees: Employee[] = [
+  { name: "Alice", expertise: "Software Engineering", yearsExperience: 5 },
+  { name: "Bob", department: "Sales", employeesSupervised: 10 },
+  { name: "Charlie", expertise: "Mechanical Engineering", yearsExperience: 3 },
+  { name: "Dana", department: "Marketing", employeesSupervised: 8 },
+];
+
+const engineers = filterEmployees(employees, "engineer");
+console.log("engineer: ", engineers);
+
+const managers = filterEmployees(employees, "manager");
+console.log("employees ", managers);
+
+type Mammal = {
+  name: string;
+  species: string;
+  numLegs: number;
+};
+
+type Bird = {
+  name: string;
+  species: string;
+  wingSpan: number;
+};
+
+type Animal = Mammal | Bird;
+
+function filterAnimals(animal: Animal[], type: "mammal" | "bird"): Animal[] {
+  if (type === "mammal") {
+    return animal.filter((animal) => "numLegs" in animal);
+  } else if (type === "bird") {
+    return animal.filter((animal) => "wingSpan" in animal);
+  } else {
+    return [];
+  }
+}
+
+const animals: Animal[] = [
+  { name: "Lion", species: "Panthera leo", numLegs: 4 },
+  { name: "Eagle", species: "Aquila chrysaetos", wingSpan: 2.3 },
+  { name: "Elephant", species: "Loxodonta", numLegs: 4 },
+  { name: "Penguin", species: "Aptenodytes forsteri", wingSpan: 1.2 },
+];
+
+const mammal = filterAnimals(animals, "mammal");
+console.log("mammal", mammal);
+
+const bird = filterAnimals(animals, "bird");
+console.log("bird", bird);
