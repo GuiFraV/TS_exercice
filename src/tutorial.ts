@@ -271,3 +271,40 @@ console.log("mammal", mammal);
 
 const bird = filterAnimals(animals, "bird");
 console.log("bird", bird);
+
+let temperatures: number[] = [20, 25, 30];
+// temperatures.push("hot");
+
+let colors: string[] = ["red", "green", "blue"];
+// colors.push(true);
+
+let mixedArray: (number | string)[] = [1, "two", 3];
+
+let car: { brand: string; year: number; color: string } = {
+  brand: "toyota",
+  year: 2020,
+  color: "red",
+};
+
+car.brand = "ford";
+car.color = "blue";
+
+let car1: { brand: string; year: number } = {
+  brand: "audi",
+  year: 2020,
+};
+
+let book = { title: "book", cost: 20 };
+let pen = { title: "pen", cost: 10 };
+let notebook = { title: "notebook" };
+
+let items: { readonly title: string; cost?: number }[] = [book, pen, notebook];
+
+let bike: { brand: string; year: number } = { brand: "yamaha", year: 2010 };
+// bike.year = "old";
+let laptop: { brand: string; year: number } = { brand: "Dell", year: 2020 };
+// let laptop2: { brand: string; year: number } = { brand: "HP" };
+
+let product1 = { title: "shirt", price: 20 };
+let product2 = { title: "pants" };
+let product: { title: string; price?: number }[] = [product1, product2];
