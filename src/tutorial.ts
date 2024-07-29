@@ -90,7 +90,7 @@ let fruits: string[] = ["apple", "orange"];
 // let randomValues: [] = ["hello"];
 let emptyValues: number[] = [];
 
-let names = ["peter", "susan", 1];
+// let name = ["peter", "susan", 1];
 
 let array: (string | boolean)[] = ["apple", true, "orange", false];
 
@@ -235,6 +235,39 @@ console.log("engineer: ", engineers);
 const managers = filterEmployees(employees, "manager");
 console.log("employees ", managers);
 
+// Exercice : Gestion des Animaux dans un Zoo
+// Vous devez créer une fonction en TypeScript qui filtre les animaux en fonction de leur type. Le zoo a deux types d'animaux : des mammifères et des oiseaux.
+
+// Créez deux types pour représenter les animaux :
+
+// Mammal : Représente un mammifère avec un nom, une espèce, et un nombre de pattes.
+// Bird : Représente un oiseau avec un nom, une espèce, et une envergure des ailes.
+// Créez un type union Animal qui peut être soit un Mammal soit un Bird.
+
+// Écrivez une fonction filterAnimals qui prend un tableau de Animal et un type (soit "mammal" soit "bird") et retourne un tableau contenant uniquement les animaux de ce type.
+
+// Spécifications détaillées
+// Le type Mammal doit avoir les propriétés name (string), species (string), et numLegs (number).
+// Le type Bird doit avoir les propriétés name (string), species (string), et wingSpan (number).
+// La fonction filterAnimals doit accepter un tableau de Animal et un string indiquant le type à filtrer ("mammal" ou "bird").
+// Exemple de données
+// typescript
+// Copier le code
+// const animals: Animal[] = [
+//     { name: "Lion", species: "Panthera leo", numLegs: 4 },
+//     { name: "Eagle", species: "Aquila chrysaetos", wingSpan: 2.3 },
+//     { name: "Elephant", species: "Loxodonta", numLegs: 4 },
+//     { name: "Penguin", species: "Aptenodytes forsteri", wingSpan: 1.2 }
+// ];
+// Objectif
+// Écrire la fonction filterAnimals pour qu'elle filtre correctement les animaux en fonction du type spécifié.
+
+// Instructions
+// Définissez les types Mammal et Bird.
+// Définissez le type union Animal.
+// Implémentez la fonction filterAnimals.
+// Quand tu auras terminé, partage ton code pour que je puisse le corriger. Bon courage !
+
 type Mammal = {
   name: string;
   species: string;
@@ -308,3 +341,39 @@ let laptop: { brand: string; year: number } = { brand: "Dell", year: 2020 };
 let product1 = { title: "shirt", price: 20 };
 let product2 = { title: "pants" };
 let product: { title: string; price?: number }[] = [product1, product2];
+
+function sayHi(name: string) {
+  console.log(`Hello there ${name.toUpperCase()}`);
+}
+
+sayHi("John");
+
+// Create a new array of names.
+// Write a new function that checks if a name is in your array. This function should take a name as a parameter and return a boolean.
+// Use this function to check if various names are in your array and log the results.
+
+let arrayOfnames: string[] = ["peter", "susan"];
+
+function checkName(name: string): string | undefined {
+  for (name in arrayOfnames) {
+    if (name === "peter") {
+      return name;
+    }
+    if (name === "susan") {
+      return name;
+    }
+  }
+}
+
+const names: string[] = ["John", "Jane", "Jim", "Jill"];
+
+function isNameInList(name: string): boolean {
+  return names.includes(name);
+}
+
+let nameToCheck: string = "Jane";
+if (isNameInList(nameToCheck)) {
+  console.log(`${nameToCheck} is in the list`);
+} else {
+  console.log(`${nameToCheck} is not in the list `);
+}
