@@ -510,3 +510,45 @@ const newStudent = {
 };
 
 createStudent(newStudent);
+createStudent({ id: 1, name: "bob" });
+
+function processData(
+  input: string | number,
+  config: { reverse: boolean } = { reverse: false }
+): string | number {
+  if (typeof input === "number") {
+    return input * input;
+  } else {
+    return config.reverse
+      ? input.toUpperCase().split("").reverse().join("")
+      : input.toUpperCase();
+  }
+}
+
+console.log(processData("hello"));
+console.log(processData(4));
+console.log(processData("it's a string", { reverse: true }));
+
+function handleData(
+  data: number[] | string[],
+  options: { double: boolean } = { double: false }
+): string[] | number[] {
+  if (typeof data[0] === "number") {
+    return (data as number[]).map((d) => d * 2);
+  } else if (typeof data[0] === "string") {
+    return options.double
+      ? (data as string[]).map((d) => d.repeat(2).toLowerCase())
+      : (data as string[]).map((d) => d.toLowerCase());
+  } else {
+    return [];
+  }
+}
+
+// Exemple de données
+const numbers = [1, 2, 3];
+const strings = ["HELLO", "WORLD"];
+
+// Test des cas d'utilisation
+console.log(handleData(numbers)); // Output: [2, 4, 6]
+console.log(handleData(strings)); // Output: ["hello", "world"]
+console.log(handleData(strings, { double: true }));
