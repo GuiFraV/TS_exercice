@@ -552,3 +552,53 @@ const strings = ["HELLO", "WORLD"];
 console.log(handleData(numbers)); // Output: [2, 4, 6]
 console.log(handleData(strings)); // Output: ["hello", "world"]
 console.log(handleData(strings, { double: true }));
+
+type UserAccount = {
+  id: string;
+  name: string;
+  email: string;
+};
+
+type AdminAccount = {
+  id: string;
+  name: string;
+  accessLevel: number;
+};
+
+type Account = UserAccount | AdminAccount;
+
+function processAccounts(
+  account: Account[],
+  config: { anonymize: boolean } = { anonymize: false }
+): Array<
+  (UserAccount & { isAdmin: false }) | (AdminAccount & { isAdmin: true })
+> {
+  return account.map((account) => {
+    if ("email" in account) {
+      return {
+        ...account,
+        name: config.anonymize ? "Anonymous" : account.name.toUpperCase(),
+        isAdmin: false,
+      };
+    } else if ("accessLevel" in account) {
+      return {
+        ...account,
+        name: config.anonymize ? "Anonymous" : account.name.toUpperCase(),
+        isAdmin: true,
+      };
+    } else {
+      throw new Error("Type de compte inconnu");
+    }
+  });
+}
+
+const accounts: Account[] = [
+  { id: "U1", name: "Alice", email: "alice@example.com" },
+  { id: "A1", name: "Bob", accessLevel: 5 },
+  { id: "U2", name: "Charlie", email: "charlie@example.com" },
+  { id: "A2", name: "Dave", accessLevel: 10 },
+];
+
+// Test des cas d'utilisation
+console.log(processAccounts(accounts)); // Output avec noms en majuscules et isAdmin ajouté
+console.log(processAccounts(accounts, { anonymize: true })); //
