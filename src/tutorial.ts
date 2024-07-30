@@ -150,50 +150,50 @@ let array: (string | boolean)[] = ["apple", true, "orange", false];
 // console.log("Designers:", designers);
 
 // Définir le type Car
-type Car = {
-  brand: string;
-  model: string;
-  doors: number;
-};
+// type Car = {
+//   brand: string;
+//   model: string;
+//   doors: number;
+// };
 
-// Définir le type Truck
-type Truck = {
-  brand: string;
-  model: string;
-  capacity: number;
-};
+// // Définir le type Truck
+// type Truck = {
+//   brand: string;
+//   model: string;
+//   capacity: number;
+// };
 
-// Définir le type union Vehicle
-type Vehicle = Car | Truck;
+// // Définir le type union Vehicle
+// type Vehicle = Car | Truck;
 
-// Fonction pour filtrer les véhicules
-function filterVehicles(vehicles: Vehicle[], type: "car" | "truck"): Vehicle[] {
-  if (type === "car") {
-    return vehicles.filter((vehicle): vehicle is Car => "doors" in vehicle);
-  } else if (type === "truck") {
-    return vehicles.filter(
-      (vehicle): vehicle is Truck => "capacity" in vehicle
-    );
-  } else {
-    return [];
-  }
-}
+// // Fonction pour filtrer les véhicules
+// function filterVehicles(vehicles: Vehicle[], type: "car" | "truck"): Vehicle[] {
+//   if (type === "car") {
+//     return vehicles.filter((vehicle): vehicle is Car => "doors" in vehicle);
+//   } else if (type === "truck") {
+//     return vehicles.filter(
+//       (vehicle): vehicle is Truck => "capacity" in vehicle
+//     );
+//   } else {
+//     return [];
+//   }
+// }
 
-// Exemple de données
-const vehicles: Vehicle[] = [
-  { brand: "Toyota", model: "Corolla", doors: 4 },
-  { brand: "Ford", model: "F-150", capacity: 3 },
-  { brand: "Honda", model: "Civic", doors: 4 },
-  { brand: "Volvo", model: "FH16", capacity: 25 },
-];
+// // Exemple de données
+// const vehicles: Vehicle[] = [
+//   { brand: "Toyota", model: "Corolla", doors: 4 },
+//   { brand: "Ford", model: "F-150", capacity: 3 },
+//   { brand: "Honda", model: "Civic", doors: 4 },
+//   { brand: "Volvo", model: "FH16", capacity: 25 },
+// ];
 
-// Filtrer les voitures
-const cars = filterVehicles(vehicles, "car");
-console.log(cars);
+// // Filtrer les voitures
+// const cars = filterVehicles(vehicles, "car");
+// console.log(cars);
 
-// Filtrer les camions
-const trucks = filterVehicles(vehicles, "truck");
-console.log(trucks);
+// // Filtrer les camions
+// const trucks = filterVehicles(vehicles, "truck");
+// console.log(trucks);
 
 type Engineer = {
   name: string;
@@ -377,3 +377,111 @@ if (isNameInList(nameToCheck)) {
 } else {
   console.log(`${nameToCheck} is not in the list `);
 }
+
+// WORK WITH OPTIONAL PARAMETER
+function calculatePrice(price: number, discount?: number): number {
+  return price - (discount || 0);
+}
+
+let priceAfterDiscount = calculatePrice(100, 20);
+
+// WORK WITH DEFAULT PARAMETER
+function calculateScore(
+  initialScore: number,
+  penaltyPoints: number = 0
+): number {
+  return initialScore - penaltyPoints;
+}
+
+let scoreAfterPenalty = calculateScore(100, 20);
+let scoreWithoutPenalty = calculateScore(300);
+
+// WORK WITH REST PARAMETER
+
+function sum(message: string, ...numbers: number[]): string {
+  const doubled = numbers.map((num) => num * 2);
+  console.log(doubled);
+
+  let total = numbers.reduce((previous, current) => {
+    return previous + current;
+  }, 0);
+
+  return `${message} ${total}`;
+}
+
+let result = sum("The total is : ", 1, 2, 3, 4, 5);
+console.log(result);
+
+function logMessage(message: string): void {
+  console.log(message);
+}
+
+logMessage("Hello TypeScript");
+
+// Your task is to create a function named processInput that accepts a parameter of a union type string | number. The function should behave as follows:
+
+// If the input is of type number, the function should multiply the number by 2 and log the result to the console.
+// If the input is of type string, the function should convert the string to uppercase and log the result to the console.
+
+function processInput(param: string | number) {
+  if (typeof param === "string") {
+    console.log(param.toUpperCase());
+  }
+  if (typeof param === "number") {
+    console.log(param * 2);
+  }
+}
+
+processInput(10);
+processInput("Hello");
+
+type Car = {
+  name: string;
+  costPerKm: number;
+  distance: number;
+};
+
+type Truck = {
+  name: string;
+  costPerKm: number;
+  distance: number;
+  additionalCostPerTonne: number;
+};
+
+type Vehicle = Car | Truck;
+
+function calculateTotalCost(vehicles: Vehicle[]): Number {
+  let totalCost = 0;
+
+  vehicles.forEach((vehicle) => {
+    if ("additionalCostPerTonne" in vehicle) {
+      totalCost +=
+        vehicle.costPerKm * vehicle.distance +
+        vehicle.additionalCostPerTonne * vehicle.distance;
+    } else {
+      totalCost += vehicle.costPerKm * vehicle.distance;
+    }
+  });
+
+  return totalCost;
+}
+
+const vehicles: Vehicle[] = [
+  { name: "Car1", costPerKm: 0.5, distance: 100 },
+  {
+    name: "Truck1",
+    costPerKm: 1.0,
+    distance: 200,
+    additionalCostPerTonne: 0.2,
+  },
+  { name: "Car2", costPerKm: 0.7, distance: 150 },
+  {
+    name: "Truck2",
+    costPerKm: 1.2,
+    distance: 300,
+    additionalCostPerTonne: 0.3,
+  },
+];
+
+const totalCost = calculateTotalCost(vehicles);
+console.log("Total Cost:", totalCost);
