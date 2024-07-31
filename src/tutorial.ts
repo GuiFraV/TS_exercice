@@ -924,3 +924,29 @@ function getServerResponse(): ServerResponse {
 
 const response: ServerResponse = getServerResponse();
 console.log(response);
+
+enum UserRole {
+  Admin,
+  Manager,
+  Employee,
+}
+
+type User = {
+  id: number;
+  name: string;
+  role: UserRole;
+  contact: [string, string];
+};
+
+function createUser(user: User): User {
+  return user;
+}
+
+const user: User = createUser({
+  id: 1,
+  name: "John Doe",
+  role: UserRole.Admin,
+  contact: ["john.doe@exemple.com", "1234-456-7890"],
+});
+
+console.log(user);
