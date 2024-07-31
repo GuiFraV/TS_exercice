@@ -702,88 +702,178 @@
 
 // let tiger: Animal = { [propName]: 5 };
 
-interface Book {
-  readonly isbn: number;
-  title: string;
-  author: string;
-  genre?: string;
-  // Method
-  printAuthor(): void;
-  printTitle(message: string): string;
-  printSomething: (someValue: number) => number;
+// interface Book {
+//   readonly isbn: number;
+//   title: string;
+//   author: string;
+//   genre?: string;
+//   // Method
+//   printAuthor(): void;
+//   printTitle(message: string): string;
+//   printSomething: (someValue: number) => number;
+// }
+
+// const deepWork: Book = {
+//   isbn: 123,
+//   title: "deep work",
+//   author: "cal newport",
+//   genre: "self-help",
+//   // printAuthor() {
+//   //   console.log(this.author);
+//   // },
+//   printTitle(message) {
+//     return `${this.title} ${message}`;
+//   },
+//   // first option
+//   printSomething: function (someValue) {
+//     return someValue;
+//   },
+//   // second option
+//   // printSomething: (someValue) => {
+//   //   console.log(deepWork.author);
+//   //   return someValue;
+//   // },
+//   // third option
+//   // printSomething(someValue) {
+//   //   return someValue;
+//   // },
+
+//   printAuthor: () => {
+//     console.log(deepWork.author);
+//   },
+// };
+
+// // deepWork.isbn = "some value"
+// deepWork.printAuthor();
+// const result = deepWork.printTitle("is awesome book");
+// console.log(result);
+// console.log(deepWork.printSomething(34));
+
+// interface Film {
+//   readonly id: number;
+//   title: string;
+//   director: string;
+//   realeaseYear: number;
+//   genre?: string;
+// }
+
+// const inception: Film = {
+//   id: 1,
+//   title: "Inception",
+//   director: "Christopher Nolan",
+//   realeaseYear: 2010,
+//   genre: "Sci-Fi",
+// };
+
+// interface Computer {
+//   readonly id: number;
+//   brand: string;
+//   ram: number;
+//   storage?: number;
+//   upgradeRam(number: number): number;
+// }
+
+// const lenovo: Computer = {
+//   id: 456,
+//   brand: "Lenovo Légion",
+//   ram: 16,
+//   upgradeRam(ram) {
+//     this.ram += ram;
+//     return this.ram;
+//   },
+// };
+
+// lenovo.storage = 256;
+
+// console.log(lenovo.upgradeRam(16));
+// console.log(lenovo);
+
+// interface Person {
+//   name: string;
+//   getDetails(): string;
+// }
+
+// interface DogOwner {
+//   dogName: string;
+//   getDogDetails(): string;
+// }
+
+// interface Person {
+//   age: number;
+// }
+
+// interface Employee extends Person {
+//   employeeId: number;
+// }
+
+// const person: Person = {
+//   name: "john",
+//   age: 30,
+//   getDetails() {
+//     return `Name ${this.name}, Age ${this.age}`;
+//   },
+// };
+
+// const employee: Employee = {
+//   name: "jane",
+//   age: 28,
+//   employeeId: 123,
+//   getDetails() {
+//     return `Name ${this.name}, Age ${this.age}, Employee ID : ${this.employeeId}`;
+//   },
+// };
+
+// console.log(employee.getDetails());
+
+// interface Manager extends Person, DogOwner {
+//   managePeople(): void;
+// }
+
+// const manager: Manager = {
+//   name: "bob",
+//   age: 35,
+//   dogName: "rex",
+//   getDetails() {
+//     return `Name ${this.name}, Age ${this.age}`;
+//   },
+//   getDogDetails() {
+//     return `Name ${this.dogName}`;
+//   },
+//   managePeople() {
+//     console.log("Managing people");
+//   },
+// };
+
+// console.log(manager.getDogDetails());
+
+interface Person {
+  name: string;
 }
 
-const deepWork: Book = {
-  isbn: 123,
-  title: "deep work",
-  author: "cal newport",
-  genre: "self-help",
-  // printAuthor() {
-  //   console.log(this.author);
-  // },
-  printTitle(message) {
-    return `${this.title} ${message}`;
-  },
-  // first option
-  printSomething: function (someValue) {
-    return someValue;
-  },
-  // second option
-  // printSomething: (someValue) => {
-  //   console.log(deepWork.author);
-  //   return someValue;
-  // },
-  // third option
-  // printSomething(someValue) {
-  //   return someValue;
-  // },
-
-  printAuthor: () => {
-    console.log(deepWork.author);
-  },
-};
-
-// deepWork.isbn = "some value"
-deepWork.printAuthor();
-const result = deepWork.printTitle("is awesome book");
-console.log(result);
-console.log(deepWork.printSomething(34));
-
-interface Film {
-  readonly id: number;
-  title: string;
-  director: string;
-  realeaseYear: number;
-  genre?: string;
+interface DogOwner extends Person {
+  dogName: string;
 }
 
-const inception: Film = {
-  id: 1,
-  title: "Inception",
-  director: "Christopher Nolan",
-  realeaseYear: 2010,
-  genre: "Sci-Fi",
-};
-
-interface Computer {
-  readonly id: number;
-  brand: string;
-  ram: number;
-  storage?: number;
-  upgradeRam(number: number): number;
+interface Manager extends Person {
+  managePeople(): void;
+  delegateTasks(): void;
 }
 
-const lenovo: Computer = {
-  id: 456,
-  brand: "Lenovo Légion",
-  ram: 16,
-  upgradeRam(ram) {
-    this.ram += ram;
-    return this.ram;
-  },
-};
+function getEmployee(): Person | DogOwner | Manager {
+  let randomNumber = Math.random();
 
-lenovo.storage = 256;
+  if (randomNumber < 0.33) {
+    return { name: "john" };
+  } else if (randomNumber < 0.66) {
+    return { name: "sarah", dogName: "Rex" };
+  } else {
+    return {
+      name: "bob",
+      managePeople: () => console.log("Managing people ..."),
+      delegateTasks: () => console.log("Delegating tasks ..."),
+    };
+  }
+}
 
-console.log(lenovo.upgradeRam(16));
-console.log(lenovo);
+const employee: Person | DogOwner | Manager = getEmployee();
+console.log(employee);
