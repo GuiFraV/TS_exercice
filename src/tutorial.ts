@@ -901,6 +901,26 @@ console.log(randomPerson);
 
 let susan: [string, number] = ["susan", 30];
 
+enum ServerResponseStatus {
+  Success = 200,
+  Error = "Error",
+}
 
+Object.values(ServerResponseStatus).forEach((value) => {
+  console.log(value);
+});
 
-enum
+interface ServerResponse {
+  result: ServerResponseStatus;
+  data: string[];
+}
+
+function getServerResponse(): ServerResponse {
+  return {
+    result: ServerResponseStatus.Error,
+    data: ["First item", "second item"],
+  };
+}
+
+const response: ServerResponse = getServerResponse();
+console.log(response);
