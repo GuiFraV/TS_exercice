@@ -764,3 +764,26 @@ const inception: Film = {
   realeaseYear: 2010,
   genre: "Sci-Fi",
 };
+
+interface Computer {
+  readonly id: number;
+  brand: string;
+  ram: number;
+  storage?: number;
+  upgradeRam(number: number): number;
+}
+
+const lenovo: Computer = {
+  id: 456,
+  brand: "Lenovo Légion",
+  ram: 16,
+  upgradeRam(ram) {
+    this.ram += ram;
+    return this.ram;
+  },
+};
+
+lenovo.storage = 256;
+
+console.log(lenovo.upgradeRam(16));
+console.log(lenovo);
