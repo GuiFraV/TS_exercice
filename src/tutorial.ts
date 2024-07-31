@@ -846,44 +846,61 @@
 
 // console.log(manager.getDogDetails());
 
-interface Person {
-  name: string;
+// interface Person {
+//   name: string;
+// }
+
+// interface DogOwner extends Person {
+//   dogName: string;
+// }
+
+// interface Manager extends Person {
+//   managePeople(): void;
+//   delegateTasks(): void;
+// }
+
+// function getEmployee(): Person | DogOwner | Manager {
+//   let randomNumber = Math.random();
+
+//   if (randomNumber < 0.33) {
+//     return { name: "john" };
+//   } else if (randomNumber < 0.66) {
+//     return { name: "sarah", dogName: "Rex" };
+//   } else {
+//     return {
+//       name: "bob",
+//       managePeople: () => console.log("Managing people ..."),
+//       delegateTasks: () => console.log("Delegating tasks ..."),
+//     };
+//   }
+// }
+
+// const employee: Person | DogOwner | Manager = getEmployee();
+// console.log(employee);
+
+// function isManager(obj: Person | DogOwner | Manager): obj is Manager {
+//   return "managePeople" in obj;
+// }
+
+// if (isManager(employee)) {
+//   employee.delegateTasks();
+// }
+
+// console.log(isManager(employee));
+
+let person: [string, number] = ["john", 25];
+
+let date: [number, number, number] = [12, 17, 2001];
+
+function getPerson(): [string, number] {
+  return ["john", 25];
 }
 
-interface DogOwner extends Person {
-  dogName: string;
-}
+let randomPerson = getPerson();
+console.log(randomPerson);
 
-interface Manager extends Person {
-  managePeople(): void;
-  delegateTasks(): void;
-}
+let susan: [string, number] = ["susan", 30];
 
-function getEmployee(): Person | DogOwner | Manager {
-  let randomNumber = Math.random();
 
-  if (randomNumber < 0.33) {
-    return { name: "john" };
-  } else if (randomNumber < 0.66) {
-    return { name: "sarah", dogName: "Rex" };
-  } else {
-    return {
-      name: "bob",
-      managePeople: () => console.log("Managing people ..."),
-      delegateTasks: () => console.log("Delegating tasks ..."),
-    };
-  }
-}
 
-const employee: Person | DogOwner | Manager = getEmployee();
-console.log(employee);
-
-function isManager(obj: Person | DogOwner | Manager): obj is Manager {
-  return "managePeople" in obj;
-}
-
-if (isManager(employee)) {
-  employee.delegateTasks();
-}
-
-console.log(isManager(employee));
+enum
