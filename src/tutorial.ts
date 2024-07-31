@@ -671,33 +671,96 @@
 // printStaffDetails(alice); // Outputs: Alice is an employee in the Sales department.
 // printStaffDetails(bob);
 
-type Book = { id: number; name: string; price: number };
-type DiscountedBook = Book & { discount: number };
+// type Book = { id: number; name: string; price: number };
+// type DiscountedBook = Book & { discount: number };
 
-const book: Book = {
+// const book: Book = {
+//   id: 1,
+//   name: "how to cook a dragon",
+//   price: 15,
+// };
+
+// const book2: Book = {
+//   id: 2,
+//   name: "the secret life of unicorn",
+//   price: 18,
+// };
+
+// const discountedBook: DiscountedBook = {
+//   id: 3,
+//   name: "bablabla",
+//   price: 2,
+//   discount: 0.15,
+// };
+
+// // COMPUTED Properties :
+// const propName = "age";
+
+// type Animal = {
+//   [propName]: number;
+// };
+
+// let tiger: Animal = { [propName]: 5 };
+
+interface Book {
+  readonly isbn: number;
+  title: string;
+  author: string;
+  genre?: string;
+  // Method
+  printAuthor(): void;
+  printTitle(message: string): string;
+  printSomething: (someValue: number) => number;
+}
+
+const deepWork: Book = {
+  isbn: 123,
+  title: "deep work",
+  author: "cal newport",
+  genre: "self-help",
+  // printAuthor() {
+  //   console.log(this.author);
+  // },
+  printTitle(message) {
+    return `${this.title} ${message}`;
+  },
+  // first option
+  printSomething: function (someValue) {
+    return someValue;
+  },
+  // second option
+  // printSomething: (someValue) => {
+  //   console.log(deepWork.author);
+  //   return someValue;
+  // },
+  // third option
+  // printSomething(someValue) {
+  //   return someValue;
+  // },
+
+  printAuthor: () => {
+    console.log(deepWork.author);
+  },
+};
+
+// deepWork.isbn = "some value"
+deepWork.printAuthor();
+const result = deepWork.printTitle("is awesome book");
+console.log(result);
+console.log(deepWork.printSomething(34));
+
+interface Film {
+  readonly id: number;
+  title: string;
+  director: string;
+  realeaseYear: number;
+  genre?: string;
+}
+
+const inception: Film = {
   id: 1,
-  name: "how to cook a dragon",
-  price: 15,
+  title: "Inception",
+  director: "Christopher Nolan",
+  realeaseYear: 2010,
+  genre: "Sci-Fi",
 };
-
-const book2: Book = {
-  id: 2,
-  name: "the secret life of unicorn",
-  price: 18,
-};
-
-const discountedBook: DiscountedBook = {
-  id: 3,
-  name: "bablabla",
-  price: 2,
-  discount: 0.15,
-};
-
-// COMPUTED Properties :
-const propName = "age";
-
-type Animal = {
-  [propName]: number;
-};
-
-let tiger: Animal = { [propName]: 5 };
