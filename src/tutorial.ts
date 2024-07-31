@@ -642,31 +642,62 @@
 
 // setTheme("dark");
 
-type Employee = {
-  id: number;
-  name: string;
-  department: string;
+// type Employee = {
+//   id: number;
+//   name: string;
+//   department: string;
+// };
+
+// type Manager = {
+//   id: number;
+//   name: string;
+//   employees: Employee[];
+// };
+
+// type Staff = Employee | Manager;
+
+// function printStaffDetails(staff: Staff) {
+//   if ("employees" in staff) {
+//     console.log(`${staff.name} managed ${staff.employees.length} people`);
+//   } else {
+//     console.log(`${staff.name} is an employee in ${staff.department}`);
+//   }
+// }
+
+// const alice: Employee = { id: 1, name: "Alice", department: "Sales" };
+// const steve: Employee = { id: 1, name: "Steve", department: "HR" };
+// const bob: Manager = { id: 2, name: "Bob", employees: [alice, steve] };
+
+// printStaffDetails(alice); // Outputs: Alice is an employee in the Sales department.
+// printStaffDetails(bob);
+
+type Book = { id: number; name: string; price: number };
+type DiscountedBook = Book & { discount: number };
+
+const book: Book = {
+  id: 1,
+  name: "how to cook a dragon",
+  price: 15,
 };
 
-type Manager = {
-  id: number;
-  name: string;
-  employees: Employee[];
+const book2: Book = {
+  id: 2,
+  name: "the secret life of unicorn",
+  price: 18,
 };
 
-type Staff = Employee | Manager;
+const discountedBook: DiscountedBook = {
+  id: 3,
+  name: "bablabla",
+  price: 2,
+  discount: 0.15,
+};
 
-function printStaffDetails(staff: Staff) {
-  if ("employees" in staff) {
-    console.log(`${staff.name} managed ${staff.employees.length} people`);
-  } else {
-    console.log(`${staff.name} is an employee in ${staff.department}`);
-  }
-}
+// COMPUTED Properties :
+const propName = "age";
 
-const alice: Employee = { id: 1, name: "Alice", department: "Sales" };
-const steve: Employee = { id: 1, name: "Steve", department: "HR" };
-const bob: Manager = { id: 2, name: "Bob", employees: [alice, steve] };
+type Animal = {
+  [propName]: number;
+};
 
-printStaffDetails(alice); // Outputs: Alice is an employee in the Sales department.
-printStaffDetails(bob);
+let tiger: Animal = { [propName]: 5 };
