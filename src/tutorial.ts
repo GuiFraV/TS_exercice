@@ -993,3 +993,84 @@ const Product2: Order = {
 
 console.log(processOrder(Product));
 console.log(processOrder(Product2));
+
+// Refacto TS :
+// let products = [
+//   { id: 1, name: "Laptop", price: 1000, category: "Electronics" },
+//   { id: 2, name: "Shirt", price: 50, category: "Apparel" },
+// ];
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  category: string;
+}
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  category: string;
+}
+
+class ProductManager {
+  private products: Product[] = [];
+
+  constructor(products: Product[] = []) {
+    this.products = products;
+  }
+
+  addProduct(name: string, price: number, category: string): void {
+    const id = this.products.length
+      ? this.products[this.products.length - 1].id + 1
+      : 1;
+    this.products.push({ id, name, price, category });
+  }
+
+  updateProduct(
+    id: number,
+    name: string,
+    price: number,
+    category: string
+  ): void {
+    const product = this.products.find((product) => product.id === id);
+    if (product) {
+      product.name = name;
+      product.price = price;
+      product.category = category;
+    } else {
+      console.error(`Product with id ${id} not found`);
+    }
+  }
+
+  deleteProduct(id: number): void {
+    const index = this.products.findIndex((product) => product.id === id);
+    if (index !== -1) {
+      this.products.splice(index, 1);
+    } else {
+      console.error(`Product with id ${id} not found`);
+    }
+  }
+
+  getProduct(id: number): Product | null {
+    const product = this.products.find((product) => product.id === id);
+    return product || null;
+  }
+
+  listProducts(): Product[] {
+    return this.products;
+  }
+}
+
+// Test
+const manager = new ProductManager([
+  { id: 1, name: "Laptop", price: 1000, category: "Electronics" },
+  { id: 2, name: "Shirt", price: 50, category: "Apparel" },
+]);
+
+manager.addProduct("Phone", 600, "Electronics");
+manager.updateProduct(1, "Gaming Laptop", 1500, "Electronics");
+manager.deleteProduct(2);
+console.log(manager.getProduct(1));
+console.log(manager.listProducts());
