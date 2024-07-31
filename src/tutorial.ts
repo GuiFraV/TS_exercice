@@ -888,65 +888,108 @@
 
 // console.log(isManager(employee));
 
-let person: [string, number] = ["john", 25];
+// let person: [string, number] = ["john", 25];
 
-let date: [number, number, number] = [12, 17, 2001];
+// let date: [number, number, number] = [12, 17, 2001];
 
-function getPerson(): [string, number] {
-  return ["john", 25];
-}
+// function getPerson(): [string, number] {
+//   return ["john", 25];
+// }
 
-let randomPerson = getPerson();
-console.log(randomPerson);
+// let randomPerson = getPerson();
+// console.log(randomPerson);
 
-let susan: [string, number] = ["susan", 30];
+// let susan: [string, number] = ["susan", 30];
 
-enum ServerResponseStatus {
-  Success = 200,
-  Error = "Error",
-}
+// enum ServerResponseStatus {
+//   Success = 200,
+//   Error = "Error",
+// }
 
-Object.values(ServerResponseStatus).forEach((value) => {
-  console.log(value);
-});
+// Object.values(ServerResponseStatus).forEach((value) => {
+//   console.log(value);
+// });
 
-interface ServerResponse {
-  result: ServerResponseStatus;
-  data: string[];
-}
+// interface ServerResponse {
+//   result: ServerResponseStatus;
+//   data: string[];
+// }
 
-function getServerResponse(): ServerResponse {
-  return {
-    result: ServerResponseStatus.Error,
-    data: ["First item", "second item"],
-  };
-}
+// function getServerResponse(): ServerResponse {
+//   return {
+//     result: ServerResponseStatus.Error,
+//     data: ["First item", "second item"],
+//   };
+// }
 
-const response: ServerResponse = getServerResponse();
-console.log(response);
+// const response: ServerResponse = getServerResponse();
+// console.log(response);
 
-enum UserRole {
-  Admin,
-  Manager,
-  Employee,
-}
+// enum UserRole {
+//   Admin,
+//   Manager,
+//   Employee,
+// }
 
-type User = {
-  id: number;
+// type User = {
+//   id: number;
+//   name: string;
+//   role: UserRole;
+//   contact: [string, string];
+// };
+
+// function createUser(user: User): User {
+//   return user;
+// }
+
+// const user: User = createUser({
+//   id: 1,
+//   name: "John Doe",
+//   role: UserRole.Admin,
+//   contact: ["john.doe@exemple.com", "1234-456-7890"],
+// });
+
+// console.log(user);
+
+interface PhysicalProduct {
+  readonly id: number;
   name: string;
-  role: UserRole;
-  contact: [string, string];
+  price: number;
+  weight: number;
+}
+
+interface DigitalService {
+  readonly id: number;
+  name: string;
+  price: number;
+  deliveryEmail: string;
+}
+
+type Order = PhysicalProduct | DigitalService;
+
+function processOrder(order: Order): string | undefined {
+  if ("weight" in order) {
+    return `Product name ${order.name}, Price : ${order.price}, Weight : ${order.weight}`;
+  }
+
+  if ("deliveryEmail" in order) {
+    return `Product name ${order.name}, Price : ${order.price}, DeliveryEmail : ${order.deliveryEmail}`;
+  }
+}
+
+const Product: Order = {
+  id: 123,
+  name: "Product",
+  price: 200,
+  weight: 100,
 };
 
-function createUser(user: User): User {
-  return user;
-}
+const Product2: Order = {
+  id: 123,
+  name: "Product",
+  price: 200,
+  deliveryEmail: "jean@doe.com",
+};
 
-const user: User = createUser({
-  id: 1,
-  name: "John Doe",
-  role: UserRole.Admin,
-  contact: ["john.doe@exemple.com", "1234-456-7890"],
-});
-
-console.log(user);
+console.log(processOrder(Product));
+console.log(processOrder(Product2));
