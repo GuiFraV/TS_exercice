@@ -1179,5 +1179,8 @@
 // console.log(getColorName(Color.Blue));
 // console.log(getColorName(Color.Green));
 
-const name = "";
-const susan = "susan";
+import newStudent, { sayHello, person } from "./actions";
+
+sayHello("typescript");
+console.log(newStudent);
+console.log(person);
