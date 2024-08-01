@@ -1075,64 +1075,106 @@
 // console.log(manager.getProduct(1));
 // console.log(manager.listProducts());
 
-let someValue: any = "this is a string";
+// let someValue: any = "this is a string";
 
-let strLength: number = (someValue as string).length;
+// let strLength: number = (someValue as string).length;
 
-type Bird = {
-  name: string;
-};
+// type Bird = {
+//   name: string;
+// };
 
-let birdString = '{"name": "Eagle"}';
-let dogString = '{"breed": "Poodle"}';
+// let birdString = '{"name": "Eagle"}';
+// let dogString = '{"breed": "Poodle"}';
 
-let birdObject = JSON.parse(birdString);
-let dogObject = JSON.parse(dogString);
+// let birdObject = JSON.parse(birdString);
+// let dogObject = JSON.parse(dogString);
 
-let bed = birdObject as Bird;
-let dog = dogObject as Bird;
+// let bed = birdObject as Bird;
+// let dog = dogObject as Bird;
 
-console.log(bed.name);
-console.log(dog.name);
+// console.log(bed.name);
+// console.log(dog.name);
 
-enum Status {
-  Pending = "pending",
-  Decline = "declined",
+// enum Status {
+//   Pending = "pending",
+//   Decline = "declined",
+// }
+
+// type User = {
+//   name: string;
+//   status: Status;
+// };
+
+// const statusValue = "pending";
+// const userInstance: User = { name: "john", status: statusValue as Status };
+
+// let unknowValue: unknown;
+
+// unknowValue = "hello world";
+// unknowValue = [1, 2, 3];
+// unknowValue = 42.33455;
+
+// if (typeof unknowValue === "number") {
+//   unknowValue.toFixed(2);
+// }
+
+// function runSomeCode() {
+//   const random = Math.random();
+//   if (random < 0.5) {
+//     throw new Error("there was error ...");
+//   } else {
+//     throw "some error";
+//   }
+// }
+
+// try {
+//   runSomeCode();
+// } catch (error) {
+//   if (error instanceof Error) {
+//     console.log(error.message);
+//   } else {
+//     console.log(error);
+//   }
+// }
+
+// let someValue: never = "hello world";
+
+type Theme = "light" | "dark";
+
+function checkTheme(theme: Theme): void {
+  if (theme === "light") {
+    console.log("light");
+    return;
+  }
+  if (theme === "dark") {
+    console.log("dark theme");
+    return;
+  }
+  theme;
 }
 
-type User = {
-  name: string;
-  status: Status;
-};
-
-const statusValue = "pending";
-const userInstance: User = { name: "john", status: statusValue as Status };
-
-let unknowValue: unknown;
-
-unknowValue = "hello world";
-unknowValue = [1, 2, 3];
-unknowValue = 42.33455;
-
-if (typeof unknowValue === "number") {
-  unknowValue.toFixed(2);
+enum Color {
+  Red,
+  Blue,
+  Green,
 }
 
-function runSomeCode() {
-  const random = Math.random();
-  if (random < 0.5) {
-    throw new Error("there was error ...");
-  } else {
-    throw "some error";
+function getColorName(color: Color) {
+  switch (color) {
+    case Color.Red:
+      return "Red";
+    case Color.Blue:
+      return "Blue";
+    case Color.Green:
+      return "Green";
+    default:
+      // at build time
+      let unexpectedColor: never = color;
+      // at run time
+      throw new Error(`Unexpected color value : ${color}`);
   }
 }
 
-try {
-  runSomeCode();
-} catch (error) {
-  if (error instanceof Error) {
-    console.log(error.message);
-  } else {
-    console.log(error);
-  }
-}
+console.log(getColorName(Color.Red));
+console.log(getColorName(Color.Blue));
+console.log(getColorName(Color.Green));
