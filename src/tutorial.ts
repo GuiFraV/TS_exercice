@@ -951,126 +951,159 @@
 
 // console.log(user);
 
-interface PhysicalProduct {
-  readonly id: number;
-  name: string;
-  price: number;
-  weight: number;
-}
+// interface PhysicalProduct {
+//   readonly id: number;
+//   name: string;
+//   price: number;
+//   weight: number;
+// }
 
-interface DigitalService {
-  readonly id: number;
-  name: string;
-  price: number;
-  deliveryEmail: string;
-}
+// interface DigitalService {
+//   readonly id: number;
+//   name: string;
+//   price: number;
+//   deliveryEmail: string;
+// }
 
-type Order = PhysicalProduct | DigitalService;
+// type Order = PhysicalProduct | DigitalService;
 
-function processOrder(order: Order): string | undefined {
-  if ("weight" in order) {
-    return `Product name ${order.name}, Price : ${order.price}, Weight : ${order.weight}`;
-  }
+// function processOrder(order: Order): string | undefined {
+//   if ("weight" in order) {
+//     return `Product name ${order.name}, Price : ${order.price}, Weight : ${order.weight}`;
+//   }
 
-  if ("deliveryEmail" in order) {
-    return `Product name ${order.name}, Price : ${order.price}, DeliveryEmail : ${order.deliveryEmail}`;
-  }
-}
+//   if ("deliveryEmail" in order) {
+//     return `Product name ${order.name}, Price : ${order.price}, DeliveryEmail : ${order.deliveryEmail}`;
+//   }
+// }
 
-const Product: Order = {
-  id: 123,
-  name: "Product",
-  price: 200,
-  weight: 100,
-};
+// const Product: Order = {
+//   id: 123,
+//   name: "Product",
+//   price: 200,
+//   weight: 100,
+// };
 
-const Product2: Order = {
-  id: 123,
-  name: "Product",
-  price: 200,
-  deliveryEmail: "jean@doe.com",
-};
+// const Product2: Order = {
+//   id: 123,
+//   name: "Product",
+//   price: 200,
+//   deliveryEmail: "jean@doe.com",
+// };
 
-console.log(processOrder(Product));
-console.log(processOrder(Product2));
+// console.log(processOrder(Product));
+// console.log(processOrder(Product2));
 
-// Refacto TS :
-// let products = [
+// // Refacto TS :
+// // let products = [
+// //   { id: 1, name: "Laptop", price: 1000, category: "Electronics" },
+// //   { id: 2, name: "Shirt", price: 50, category: "Apparel" },
+// // ];
+
+// interface Product {
+//   id: number;
+//   name: string;
+//   price: number;
+//   category: string;
+// }
+
+// interface Product {
+//   id: number;
+//   name: string;
+//   price: number;
+//   category: string;
+// }
+
+// class ProductManager {
+//   private products: Product[] = [];
+
+//   constructor(products: Product[] = []) {
+//     this.products = products;
+//   }
+
+//   addProduct(name: string, price: number, category: string): void {
+//     const id = this.products.length
+//       ? this.products[this.products.length - 1].id + 1
+//       : 1;
+//     this.products.push({ id, name, price, category });
+//   }
+
+//   updateProduct(
+//     id: number,
+//     name: string,
+//     price: number,
+//     category: string
+//   ): void {
+//     const product = this.products.find((product) => product.id === id);
+//     if (product) {
+//       product.name = name;
+//       product.price = price;
+//       product.category = category;
+//     } else {
+//       console.error(`Product with id ${id} not found`);
+//     }
+//   }
+
+//   deleteProduct(id: number): void {
+//     const index = this.products.findIndex((product) => product.id === id);
+//     if (index !== -1) {
+//       this.products.splice(index, 1);
+//     } else {
+//       console.error(`Product with id ${id} not found`);
+//     }
+//   }
+
+//   getProduct(id: number): Product | null {
+//     const product = this.products.find((product) => product.id === id);
+//     return product || null;
+//   }
+
+//   listProducts(): Product[] {
+//     return this.products;
+//   }
+// }
+
+// // Test
+// const manager = new ProductManager([
 //   { id: 1, name: "Laptop", price: 1000, category: "Electronics" },
 //   { id: 2, name: "Shirt", price: 50, category: "Apparel" },
-// ];
+// ]);
 
-interface Product {
-  id: number;
+// manager.addProduct("Phone", 600, "Electronics");
+// manager.updateProduct(1, "Gaming Laptop", 1500, "Electronics");
+// manager.deleteProduct(2);
+// console.log(manager.getProduct(1));
+// console.log(manager.listProducts());
+
+let someValue: any = "this is a string";
+
+let strLength: number = (someValue as string).length;
+
+type Bird = {
   name: string;
-  price: number;
-  category: string;
+};
+
+let birdString = '{"name": "Eagle"}';
+let dogString = '{"breed": "Poodle"}';
+
+let birdObject = JSON.parse(birdString);
+let dogObject = JSON.parse(dogString);
+
+let bed = birdObject as Bird;
+let dog = dogObject as Bird;
+
+console.log(bed.name);
+console.log(dog.name);
+
+enum Status {
+  Pending = "pending",
+  Decline = "declined",
 }
 
-interface Product {
-  id: number;
+type User = {
   name: string;
-  price: number;
-  category: string;
-}
+  status: Status;
+};
 
-class ProductManager {
-  private products: Product[] = [];
-
-  constructor(products: Product[] = []) {
-    this.products = products;
-  }
-
-  addProduct(name: string, price: number, category: string): void {
-    const id = this.products.length
-      ? this.products[this.products.length - 1].id + 1
-      : 1;
-    this.products.push({ id, name, price, category });
-  }
-
-  updateProduct(
-    id: number,
-    name: string,
-    price: number,
-    category: string
-  ): void {
-    const product = this.products.find((product) => product.id === id);
-    if (product) {
-      product.name = name;
-      product.price = price;
-      product.category = category;
-    } else {
-      console.error(`Product with id ${id} not found`);
-    }
-  }
-
-  deleteProduct(id: number): void {
-    const index = this.products.findIndex((product) => product.id === id);
-    if (index !== -1) {
-      this.products.splice(index, 1);
-    } else {
-      console.error(`Product with id ${id} not found`);
-    }
-  }
-
-  getProduct(id: number): Product | null {
-    const product = this.products.find((product) => product.id === id);
-    return product || null;
-  }
-
-  listProducts(): Product[] {
-    return this.products;
-  }
-}
-
-// Test
-const manager = new ProductManager([
-  { id: 1, name: "Laptop", price: 1000, category: "Electronics" },
-  { id: 2, name: "Shirt", price: 50, category: "Apparel" },
-]);
-
-manager.addProduct("Phone", 600, "Electronics");
-manager.updateProduct(1, "Gaming Laptop", 1500, "Electronics");
-manager.deleteProduct(2);
-console.log(manager.getProduct(1));
-console.log(manager.listProducts());
+const statusValue = "pending";
+const userInstance: User = { name: "john", status: statusValue as Status };
