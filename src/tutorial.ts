@@ -1179,8 +1179,27 @@
 // console.log(getColorName(Color.Blue));
 // console.log(getColorName(Color.Green));
 
-import newStudent, { sayHello, person } from "./actions";
+import newStudent, { sayHello, person, type Student } from "./actions";
+import { PeugeotCar, Car } from "./type";
 
 sayHello("typescript");
 console.log(newStudent);
 console.log(person);
+
+const anotherStudent: Student = {
+  name: "bob",
+  age: 23,
+};
+
+console.log(anotherStudent);
+
+const peugeot: Car & {
+  model: string;
+} = {
+  brand: "206",
+  wheels: 4,
+  door: 5,
+  model: "Rolland Garros",
+};
+
+console.log(peugeot);
