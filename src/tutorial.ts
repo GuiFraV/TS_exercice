@@ -1107,3 +1107,32 @@ type User = {
 
 const statusValue = "pending";
 const userInstance: User = { name: "john", status: statusValue as Status };
+
+let unknowValue: unknown;
+
+unknowValue = "hello world";
+unknowValue = [1, 2, 3];
+unknowValue = 42.33455;
+
+if (typeof unknowValue === "number") {
+  unknowValue.toFixed(2);
+}
+
+function runSomeCode() {
+  const random = Math.random();
+  if (random < 0.5) {
+    throw new Error("there was error ...");
+  } else {
+    throw "some error";
+  }
+}
+
+try {
+  runSomeCode();
+} catch (error) {
+  if (error instanceof Error) {
+    console.log(error.message);
+  } else {
+    console.log(error);
+  }
+}
