@@ -1413,14 +1413,21 @@
 // }
 // console.log(generateStringArray(6, "heelo"));
 
-function createArray<T>(length: number, value: T): Array<T> {
-  let result: Array<T> = [];
-  result = Array(length).fill(value);
-  return result;
-}
+// function createArray<T>(length: number, value: T): Array<T> {
+//   let result: Array<T> = [];
+//   result = Array(length).fill(value);
+//   return result;
+// }
 
-let arrayString = createArray<string>(10, "hello");
-let arrayNumber = createArray<number>(15, 100);
+// let arrayString = createArray<string>(10, "hello");
+// let arrayNumber = createArray<number>(15, 100);
 
-console.log(arrayString);
-console.log(arrayNumber);
+// console.log(arrayString);
+// console.log(arrayNumber);
+
+// function pair<T, U>(param1: T, param2: U): [T, U] {
+//   return [param1, param2];
+// }
+
+// let result = pair<number, string>(123, "hello");
+// console.log(result);
