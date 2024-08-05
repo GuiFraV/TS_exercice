@@ -1365,27 +1365,62 @@
 //   return arg;
 // }
 
-function genericFunction<T>(arg: T): T {
-  return arg;
+// function genericFunction<T>(arg: T): T {
+//   return arg;
+// }
+
+// const someStringValue = genericFunction<string>("Hello");
+// const someNumberValue = genericFunction<number>(41);
+
+// interface GenericInterface<T> {
+//   value: T;
+//   getValue: () => T;
+// }
+
+// const genericString: GenericInterface<string> = {
+//   value: "Hello World",
+//   getValue() {
+//     return this.value;
+//   },
+// };
+
+// async function someFunc(): Promise<string> {
+//   return "hello world";
+// }
+
+// const result = someFunc();
+
+// createArray<string>(3, "hello");
+// createArray<number>(4, 100);
+
+// function createArray<T>(num: number, data: T): Array<T> {
+//   let result = [];
+
+//   for (let i = 0; i < num; i++) {
+//     result.push(data);
+//   }
+
+//   return result;
+// }
+
+// console.log(createArray<string>(3, "hello"));
+// console.log(createArray<number>(4, 100));
+
+// function generateStringArray(length: number, value: string): string[] {
+//   let result: string[] = [];
+//   result = Array(length).fill(value);
+//   return result;
+// }
+// console.log(generateStringArray(6, "heelo"));
+
+function createArray<T>(length: number, value: T): Array<T> {
+  let result: Array<T> = [];
+  result = Array(length).fill(value);
+  return result;
 }
 
-const someStringValue = genericFunction<string>("Hello");
-const someNumberValue = genericFunction<number>(41);
+let arrayString = createArray<string>(10, "hello");
+let arrayNumber = createArray<number>(15, 100);
 
-interface GenericInterface<T> {
-  value: T;
-  getValue: () => T;
-}
-
-const genericString: GenericInterface<string> = {
-  value: "Hello World",
-  getValue() {
-    return this.value;
-  },
-};
-
-async function someFunc(): Promise<string> {
-  return "hello world";
-}
-
-const result = someFunc();
+console.log(arrayString);
+console.log(arrayNumber);
