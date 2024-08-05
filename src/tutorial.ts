@@ -1431,3 +1431,10 @@
 
 // let result = pair<number, string>(123, "hello");
 // console.log(result);
+
+// function processValue<T extends string | number>(value: T): T {
+//   return value;
+// }
+
+// console.log(processValue("hello"));
+// console.log(processValue(13));
