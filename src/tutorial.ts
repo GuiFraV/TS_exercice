@@ -1315,3 +1315,77 @@
 // } else {
 //   person.login;
 // }
+
+// type IncrementAction = {
+//   type: "increment";
+//   amount: number;
+//   timestamp: number;
+//   user: string;
+// };
+
+// type DecrementAction = {
+//   type: "decrement";
+//   amount: number;
+//   timestamp: number;
+//   user: string;
+// };
+
+// type Action = IncrementAction | DecrementAction;
+
+// function reducer(state: number, action: Action) {
+//   switch (action.type) {
+//     case "increment":
+//       return state + action.amount;
+//     case "decrement":
+//       return state + action.amount;
+
+//     default:
+//       const unexpectedAction: never = action;
+//       throw new Error(`Unexpected action : ${unexpectedAction} `);
+//   }
+// }
+
+// const newState = reducer(15, {
+//   user: "john",
+//   type: "increment",
+//   amount: 5,
+//   timestamp: 123456,
+// });
+
+// let array1: string[] = ["Apple", "Banana", "Mango"];
+// let array2: number[] = [1, 2, 3];
+// let array3: boolean[] = [true, false, true];
+
+// let array1: Array<string> = ["Apple", "Banana", "Mango"];
+
+// function createString(arg: string): string {
+//   return arg;
+// }
+// function createNumber(arg: number): number {
+//   return arg;
+// }
+
+function genericFunction<T>(arg: T): T {
+  return arg;
+}
+
+const someStringValue = genericFunction<string>("Hello");
+const someNumberValue = genericFunction<number>(41);
+
+interface GenericInterface<T> {
+  value: T;
+  getValue: () => T;
+}
+
+const genericString: GenericInterface<string> = {
+  value: "Hello World",
+  getValue() {
+    return this.value;
+  },
+};
+
+async function someFunc(): Promise<string> {
+  return "hello world";
+}
+
+const result = someFunc();
