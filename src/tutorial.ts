@@ -1179,27 +1179,85 @@
 // console.log(getColorName(Color.Blue));
 // console.log(getColorName(Color.Green));
 
-import newStudent, { sayHello, person, type Student } from "./actions";
-import { PeugeotCar, Car } from "./type";
+// import newStudent, { sayHello, person, type Student } from "./actions";
+// import { PeugeotCar, Car } from "./type";
 
-sayHello("typescript");
-console.log(newStudent);
-console.log(person);
+// sayHello("typescript");
+// console.log(newStudent);
+// console.log(person);
 
-const anotherStudent: Student = {
-  name: "bob",
-  age: 23,
-};
+// const anotherStudent: Student = {
+//   name: "bob",
+//   age: 23,
+// };
 
-console.log(anotherStudent);
+// console.log(anotherStudent);
 
-const peugeot: Car & {
-  model: string;
-} = {
-  brand: "206",
-  wheels: 4,
-  door: 5,
-  model: "Rolland Garros",
-};
+// const peugeot: Car & {
+//   model: string;
+// } = {
+//   brand: "206",
+//   wheels: 4,
+//   door: 5,
+//   model: "Rolland Garros",
+// };
 
-console.log(peugeot);
+// console.log(peugeot);
+
+// type ValueType = string | number | boolean;
+
+// let value: ValueType;
+// const random = Math.random();
+// value = random < 0.33 ? "Hello" : random < 0.66 ? 123.456 : true;
+
+// function checkValue(valuetype: ValueType): void {
+//   if (typeof valuetype === "string") {
+//     console.log(valuetype.toLowerCase());
+//     return;
+//   } else if (typeof valuetype === "number") {
+//     console.log(111.0);
+//     return;
+//   } else {
+//     console.log("boolean : " + valuetype);
+//     return;
+//   }
+// }
+
+// console.log(checkValue(1));
+// console.log(checkValue("1"));
+// console.log(checkValue(false));
+
+// type Dog = { type: "dog"; name: string; bark: () => void };
+// type Cat = { type: "cat"; name: string; meow: () => void };
+// type Animal = Dog | Cat;
+
+// function makeSound(animal: Animal) {
+//   if (animal.type === "dog") {
+//     animal.bark();
+//   }
+//   if (animal.type === "cat") {
+//     animal.meow();
+//   }
+// }
+
+// function makeSound(animal: Animal) {
+//   if ("bark" in animal) {
+//     animal.bark();
+//   } else {
+//     animal.meow();
+//   }
+// }
+
+// function printLength(str: string | null | undefined) {
+//   if (str) {
+//     console.log(str.length);
+//   } else {
+//     console.log("no string provided");
+//   }
+// }
+
+// printLength("hello");
+// printLength("");
+// printLength(null);
+// printLength();
+// printLength(undefined);
